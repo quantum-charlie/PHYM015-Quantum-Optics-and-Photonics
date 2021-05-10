@@ -1,0 +1,2243 @@
+%
+% Report Template Version 1.0
+% University of Exeter
+% Department of Physics and Astronomy
+%
+%
+% Comments start with % (percent) character and last till the end of the line.
+%
+% Compile this latex file using pdflatex command, rather than the latex 
+% command, to produce pdf output directly  
+%
+% LaTeX2e document starts with \documentclass[options]{<class-name>}
+%
+% <class-name> can be one of the standard LaTeX document classes: 
+% article, report or book, or some other specialised class.
+%
+% options: a4paper - paper size; onecolumn or two column format; 12pt font size
+%
+% always use a minimum of a 12pt font throughout for readability 
+%
+% uncomment/comment the appropriate documentclass of 2 options below
+%
+%\documentclass[a4paper,onecolumn,12pt]{article}
+\documentclass[a4paper,twocolumn,11pt]{article}
+%
+% Preamble of LaTeX document is everything before \begin{document}.
+%
+% Preamble is used to load extension packages and to set up global 
+% parameters and configuration for the entire document.
+%
+% Extension packages providing additional functionality:
+%
+
+\usepackage{amsmath}      % additional math environments
+\usepackage{graphicx}     % graphics import from external files 
+\usepackage{caption}      % customisation of captions
+\usepackage{booktabs}     % table typesetting additions
+\usepackage{url}          % format url addresses
+\usepackage{abstract}	  % allows formatting of abstract
+\usepackage{wasysym}      % provides astronomical symbols
+\usepackage{txfonts}	     % nicer roman font than the default
+\usepackage{comment}	     % allows one to use \begin{comment} and \end{comment} to comment out section
+
+\usepackage{braket}       % added 28/01/20
+\usepackage{dsfont}       % added 18/12/20
+\usepackage{rotating}     % added 22/12/20
+\usepackage{supertabular} % added 22/12/20
+\usepackage{array}        % added 22/12/20
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\makeatletter
+\renewcommand{\maketag@@@}[1]{\hbox{\m@th\normalsize\normalfont#1}}
+\makeatother
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arcCot}
+\DeclareMathOperator{\arccsc}{arcCsc}
+\DeclareMathOperator{\arccosh}{arcCosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arcCsch}
+\DeclareMathOperator{\arccoth}{arcCoth} 
+%
+% OPTIONS FOR REFERENCES
+%
+% If you reference by numbers (e.g. [1]), you can enter references manually, or create a BibTeX file that 
+% contains all your references.  This is particularly useful if you know you will be using references again 
+% and again, or if you want to keep a library of references all in one place.
+%
+% This line defines a logical variable `usebibtex' that specifies that you do (true) or do not want (false) to
+% use BibTeX.  The name of the BibTeX file is set near the end of the document using the 
+% \bibliography{bibliography} command.
+%
+\newif\ifUseBibTeX
+%
+% These two lines define the logical variable to be either true or false: comment/uncomment the one you want:
+%
+\UseBibTeXtrue
+%\UseBibTeXfalse
+%
+%
+% Many physics articles use numbers for references (e.g. [1])
+% Most astronomy and astrophysics articles refer to other articles by Author Name and Year. (e.g. Jones 2010)
+% Choose which to use below:
+%
+% This line defines a logical variable `RefByNum'
+\newif\ifRefByNum
+%
+% These two lines define the logical variable to be either true or false: comment/uncomment the one you want:
+%
+\RefByNumtrue
+%\RefByNumfalse
+%
+% The following lines, down to \fi (which is the end of the if section), are required depending on which type of
+% referencing you choose
+%
+\ifRefByNum
+%
+% For standard reference by number, use:
+%
+\usepackage{cite}         % improved handling of numeric citations
+\bibliographystyle{ieeetr}   % for this style the numbers are assigned in the order they are referenced in the text
+%
+%
+\else
+%
+% For reference by author and year, use:  
+%
+\UseBibTeXfalse
+\usepackage{aas_macros}
+\usepackage[round]{natbib}
+\setcitestyle{aysep={}}
+\bibliographystyle{mn2e}
+%
+%      You also need to have the following files in the directory:
+%         aas_macros.sty    - this contains abbreviations of many journal names
+%         mn2e.bst              - this allows you to use a bibtex file to contain the full reference information
+%
+%      You will need to create a ".bib" file containing bibtex records for each reference.
+%	For example, if you use the NASA ADS system to find papers, it can give you the bibtex entry to copy 
+%	and paste into your ".bib" file.  See, for example, http://adsabs.harvard.edu/abs/2018MNRAS.475.5618B
+%
+%	Which gives a bibtex entry like:
+%	@ARTICLE{2018MNRAS.475.5618B,
+%	   author = {{Bate}, M.~R.},
+%	    title = "{On the diversity and statistical properties of protostellar discs}",
+%	  journal = {\mnras},
+%	archivePrefix = "arXiv",
+%	   eprint = {1801.07721},
+%	 primaryClass = "astro-ph.SR",
+%	 keywords = {accretion, accretion discs, hydrodynamics, radiative transfer, methods: numerical, protoplanetary discs, stars: formation},
+%	     year = 2018,
+%	    month = apr,
+%	   volume = 475,
+%	    pages = {5618-5658},
+%	      doi = {10.1093/mnras/sty169},
+%	   adsurl = {http://adsabs.harvard.edu/abs/2018MNRAS.475.5618B},
+%	  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+%	}
+%
+%. At the end of your LaTeX document, you then reference the bibliography using:
+% \bibliography{bibtexfilename}
+%     where your bib file has, for example, the name: bibtexfilename.bib
+%
+\fi
+%
+% END OF DEFINITIONS FOR REFERENCES
+%
+% PAGE FORMATTING
+%
+% To set margins etc.:
+%
+\textheight 24.0cm        % sets the length of the text on each page
+\textwidth 16.0cm         % sets the width of the text on each page
+\topmargin -1.25cm        % sets the top margin: - higher, + lower 
+\oddsidemargin 0.5cm      % makes the left margin: + wider, - narrower
+%
+% \renewcommand{\abstractname}{}    % removes abstract title
+%
+% sets abstract margins, but no real need to do this:
+% \setlength{\absleftindent}{30mm}
+% \setlength{\absrightindent}{30mm}
+%
+% some handy commands for referencing;
+% the optional argument overrides the default label, e.g.
+% \figref[FIG.~]{fig:label}
+\newcommand{\figref}[2][\figurename~]{#1\ref{#2}}
+\newcommand{\tabref}[2][\tablename~]{#1\ref{#2}}
+\newcommand{\secref}[2][Section~]{#1\ref{#2}}
+%
+%
+% BEGINNING OF THE ACTUAL DOCUMENT
+%
+% The document opens with \begin{document} and closes with \end{document}
+%
+\begin{document}
+%
+% The aim of the formatting should be to optimise readability, hence reports
+% should be single column and double line spaced, with an appropriate number of 
+% words per line - between 8 and 12. 
+% edit title and author as needed:
+%
+\title{\textbf{\Huge PHYM015 - Quantum Optics and Photonics}}           % fill in the title here
+\author{\LARGE Key Equations and Concepts}         % fill in your name here
+%
+\date{\Large \textit{Academic Year 20/21}}  % resets date of the report from today's date
+%
+%\twocolumn[	          % makes title and abstract appear over entire page 
+                          % width - possibly required if two-column option 
+                          % chosen in documentclass - otherwise comment out
+%
+\maketitle                % formats the title
+%
+\section{Introduction}
+
+\section{Dirac Notation}
+
+\subsection{Fundamentals}
+
+\subsubsection{Inner Product}
+
+\begin{equation}
+    \braket{\phi|\psi} = \braket{\psi|\phi}^* \in \mathds{C}
+\end{equation}
+
+\subsubsection{Completeness Relation}
+
+\begin{equation}
+    \sum_n \ket{\phi_n}\bra{\phi_n} = \mathds{1}
+\end{equation}
+
+\subsubsection{Projector}
+
+\begin{equation}
+    \hat{P} = \ket{\psi}\bra{\psi}
+\end{equation}
+\begin{equation}
+    \hat{P} = \hat{P}^\dagger
+\end{equation}
+
+\subsection{Quantum Evolution}
+
+\subsubsection{Time-Dependent Schrödinger Equation}
+
+\begin{equation}
+    i\hbar\frac{d}{dt}\ket{\psi(t)} = \hat{H}\ket{\psi(t)}
+\end{equation}
+
+\subsubsection{Propagators}
+
+Unitary propagators are anti-Hermitian or skew Hermitian $(\hat{S}^\dagger = -\hat{S})$.
+\begin{equation}
+    \hat{\mathcal{U}}(t) = e^{-\frac{i}{\hbar}\hat{H}t}
+\end{equation}
+\begin{equation}
+    \hat{\mathcal{U}}^\dagger(t) = e^{\frac{i}{\hbar}\hat{H}t}
+\end{equation}
+\begin{equation}
+    \hat{\mathcal{U}}^\dagger(t) = \hat{\mathcal{U}}^{-1}(t)
+\end{equation}
+
+\subsubsection{Matrix Exponential}
+
+\begin{equation}
+    e^{\hat{O}} = \sum_{n=0}^\infty \frac{\hat{O}^n}{n!}
+\end{equation}
+
+\subsection{Quantum Mechanical Pictures}
+
+In general:
+\begin{equation}
+    \hat{H}(t) = \hat{H}_0 + \hat{H}_I(t).
+\end{equation}
+\subsubsection{Schrödinger Picture}
+
+Wavefunctions carry the time dependence
+
+\begin{itemize}
+    \item{$\ket{\psi_s(t)} = e^{-\frac{i}{\hbar}\hat{H}t}\ket{\psi_s(0)}$}
+    \item{$\hat{A}_s(t) = \hat{A}_s = \hat{A}_H(0)$}
+    \item{$\hat{\rho}_s(t) = e^{-\frac{i}{\hbar}\hat{H_s}t}\hat{\rho}_s(0)e^{\frac{i}{\hbar}\hat{H_s}t}$}
+\end{itemize}
+
+\subsubsection{Heisenberg Picture}
+
+Operators carry the time dependence
+
+\begin{itemize}
+    \item{$\ket{\psi_H(t)} = \ket{\psi_H} = \ket{\psi_s(0)}$}
+    \item{$\hat{A}_H(t) = e^{\frac{i}{\hbar}\hat{H}t}A_s e^{-\frac{i}{\hbar}\hat{H}t}$}
+    \item{$\hat{\rho}_H(t) = \hat{\rho}_H = \hat{\rho}_s(0)$}
+\end{itemize}
+
+\subsubsection{Interaction Picture}
+
+Both wavefunctions and operators carry time dependence
+
+\begin{itemize}
+    \item{$\ket{\psi_I(t)} = e^{\frac{i}{\hbar}H_0t}\ket{\psi_s(t)}$}
+    \item{$\hat{A}_I(t) = e^{\frac{i}{\hbar}\hat{H_0}t}A_s e^{-\frac{i}{\hbar}\hat{H_0}t}$}
+    \item{$\hat{\rho}_I(t) = e^{\frac{i}{\hbar}\hat{H_0}t}\hat{\rho}_s(t)e^{-\frac{i}{\hbar}\hat{H_0}t}$}
+\end{itemize}
+
+\subsection{Time-Ordering Operator}
+
+\begin{equation}
+    \ket{\psi(t)} = \mathds{T}\bigg[\exp\bigg(-\frac{i}{\hbar}\int_0^tdt'\hat{H}(t')\bigg)\bigg]\ket{\psi(0)},
+\end{equation}
+where $\mathds{T}$ is the time-ordering operator.
+
+\subsection{Heisenberg Equation of Motion}
+
+\begin{equation}
+    i\hbar\frac{d}{dt}\hat{A}_H(t) = \big[\hat{A}_H(t), \hat{H}\big]
+\end{equation}
+
+\subsection{Interaction Picture Equation of Motion}
+
+\begin{equation}
+    i\hbar\frac{d}{dt}\ket{\psi_I(t)} = \hat{V}_I(t)\ket{\psi_I(t)}
+\end{equation}
+
+\section{Entanglement}
+
+\subsection{Pauli Matrices}
+
+\begin{equation}
+    \hat{X} = \hat{\sigma}_X = 
+    \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \hat{Y} = \hat{\sigma}_Y = 
+    \begin{pmatrix}
+    0 & -i \\
+    i & 0
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \hat{Z} = \hat{\sigma}_Z = 
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \hat{\mathds{1}} =
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{pmatrix}
+\end{equation}
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=70mm]{images/pauli_matrix.png}
+\end{figure}
+
+\subsection{Quantum Measurement}
+
+\subsubsection{Born Rule}
+
+\begin{equation}
+    \ket{\psi_k} \to \lambda_k
+\end{equation}
+\begin{equation}
+    p_k = |\braket{\psi|k}|^2
+\end{equation}
+
+\subsubsection{Stern-Gerlach Experiment}
+
+Measures the spin of electrons as quantised, with the direction for spin quantisation being dependent upon the magnetic field chosen (equivalent to measuring $\sigma_z$ Pauli matrix with eigenstates up and down.
+
+\subsubsection{Projective (Strong) Measurement}
+
+\begin{equation}
+    \ket{\psi} \to \frac{\hat{M}\ket{\psi}}{\sqrt{\braket{\psi|\hat{M}^\dagger\hat{M}|\psi}}}
+\end{equation}
+
+\subsection{States}
+
+\subsubsection{Product States}
+
+Can be written as a tensor product of separate states for each system.
+
+\subsubsection{Entangled States}
+
+Are impossible to write as a product of separable states.
+
+\subsubsection{Maximally Entangled/Bell State}
+
+\begin{equation}
+    \ket{\psi} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})
+\end{equation}
+
+\subsubsection{EPR States}
+
+\begin{equation}
+    \ket{\psi^{\pm}} = \frac{1}{\sqrt{2}}(\ket{01} \pm \ket{10})
+\end{equation}
+\begin{equation}
+    \ket{\phi^{\pm}} = \frac{1}{\sqrt{2}}(\ket{00} \pm \ket{11})
+\end{equation}
+
+\subsection{Density Matrices}
+
+\subsubsection{General Formula}
+
+\begin{equation}
+    \hat{\rho} = \sum_i p_i\ket{\psi_i}\bra{\psi_i}
+\end{equation}
+
+\subsubsection{Properties of the Trace Operator}
+
+The trace operator is cyclic i.e. $tr\{ABC\} = tr\{CAB\} = tr\{BCA\}$ and is basis-independent.
+
+\subsubsection{Expectation Value}
+
+\begin{equation}
+    \braket{\hat{A}} = tr\{\hat{\rho}\hat{A}\}
+\end{equation}
+
+\subsubsection{Probability Conservation}
+
+\begin{equation}
+    tr\{\hat{\rho}\} = 1
+\end{equation}
+
+\subsubsection{Positivity}
+
+\begin{equation}
+    \braket{\psi|\hat{\rho}|\psi} \geq 0
+\end{equation}
+
+\subsubsection{Spectral Decomposition}
+
+\begin{equation}
+    \hat{\rho} = \sum_k \lambda_k \ket{k}\bra{k}
+\end{equation}
+
+\subsubsection{Purity}
+
+\begin{equation}
+    tr\{\hat{\rho}^2\} \leq 1
+\end{equation}
+For pure states $tr\{\hat{\rho}^2\} = 1$.
+
+\subsection{Quantifying Entanglement}
+
+\subsubsection{Concurrence}
+
+For an example of 2 qubits:
+\begin{equation}
+    \ket{\psi} = c_{00}\ket{00} + c_{01}\ket{01} + c_{10}\ket{10} + c_{11}\ket{11}
+\end{equation}
+\begin{equation}
+    C(\ket{\psi}) = 2|c_{00}c_{11} - c_{01}c_{10}|
+\end{equation}
+Concurrence is 0 for product states and maximal for Bell states.
+
+\subsubsection{Partial Trace}
+
+\begin{equation}
+\begin{split}
+    \hat{\rho}_A &= tr_B\{\hat{\rho}\} \\
+    &= \sum_i (\hat{\mathds{1}}_A \otimes \bra{i}_B)\bra{\phi_i}\hat{\rho}\ket{\phi_i}(\hat{\mathds{1}}_A \otimes \ket{i}_B)
+\end{split}
+\end{equation}
+If $\hat{\rho}_A$ is mixed then the state is entangled.
+
+\subsubsection{Von Neumann Entropy}
+
+\begin{equation}
+    S(\hat{\rho}) = -tr\{\hat{\rho}\ln\hat{\rho}\}
+\end{equation}
+For pure states, $S(\hat{\rho}) = 0$.
+
+\subsection{Multipartite Systems}
+
+\subsubsection{GHZ State}
+
+A maximally entangled state for 3 spin-1/2 particles
+\begin{equation}
+    \ket{\psi_\text{GHZ}} = \frac{1}{\sqrt{2}}(\ket{000} + \ket{111})
+\end{equation}
+
+\subsubsection{W States}
+
+W states are entangled states of the following form:
+\begin{equation}
+    \ket{\psi_W} = \frac{1}{\sqrt{3}}(\ket{000} + \ket{010} + \ket{001}).
+\end{equation}
+
+\subsubsection{Entangled States of N Particles}
+
+\begin{equation}
+    \ket{\psi_N} = \frac{1}{\sqrt{2}}(\ket{000...} + \ket{111...})
+\end{equation}
+
+\subsection{Bell's Theorem}
+
+\begin{equation}
+    S = \braket{\hat{X}\hat{X}'} + \braket{\hat{Z}\hat{Z}'} - \braket{\hat{X}\hat{Z}'} + \braket{\hat{Z}\hat{X}'}
+\end{equation}
+\begin{equation}
+    \begin{cases} -2\leq S\leq 2\ \ \ \ \text{Classical}\\
+    -2\sqrt{2}\leq S\leq 2\sqrt{2}\ \ \ \ \text{Quantum}\\
+    \end{cases}
+\end{equation}
+
+\section{Quantisation of the EM Field}
+
+\subsection{Classical EM Field}
+
+\subsubsection{Wave Equation}
+
+\begin{equation}
+    \nabla^2\mathbf{A} = \frac{1}{c^2}\partial_t^2\mathbf{A}
+\end{equation}
+
+\subsubsection{Electric Field}
+
+\small
+\begin{equation}
+\begin{split}
+    \mathbf{E}(\mathbf{r},t) &= \frac{1}{(2\pi)^{3/2}}\sum_{\lambda=1,2}\int d^3\mathbf{k} i\omega \mathbf{e}_\lambda(\mathbf{k}) \\
+    &\cdot \bigg[A_\lambda(\mathbf{k})e^{i\mathbf{k\cdot r}-i\omega t} - A_\lambda^*(\mathbf{k})e^{-i\mathbf{k\cdot r}+i\omega t}\bigg]
+\end{split}
+\end{equation}
+\normalsize
+
+\subsubsection{Magnetic Field}
+
+\small
+\begin{equation}
+\begin{split}
+    \mathbf{B}(\mathbf{r},t) &= \frac{1}{(2\pi)^{3/2}}\sum_{\lambda=1,2}\int d^3\mathbf{k} i\mathbf{k}\times\mathbf{e}_\lambda(\mathbf{k}) \\
+    &\cdot \bigg[A_\lambda(\mathbf{k})e^{i\mathbf{k\cdot r}-i\omega t} - A_\lambda^*(\mathbf{k})e^{-i\mathbf{k\cdot r}+i\omega t}\bigg]
+\end{split}
+\end{equation}
+\normalsize
+
+\subsubsection{Energy of the EM Field}
+
+\small
+\begin{equation}
+    \epsilon = \epsilon_0\sum_\lambda\int d^3\mathbf{k}\omega^2\bigg[A_\lambda(\mathbf{k})A_\lambda^*(\mathbf{k}) + A_\lambda^*(\mathbf{k})A_\lambda(\mathbf{k})\bigg]
+\end{equation}
+\normalsize
+(For full derivation see many-body section 1.5-1.8 notes). Here we have shown that a completely general EM wave is equivalent to a set of Harmonic oscillators.
+
+\subsection{Quantum Harmonic Oscillator}
+
+\subsubsection{Hamiltonian}
+
+\begin{equation}
+    \hat{H} = \frac{1}{2m}\hat{p}^2 + \frac{1}{2}m\omega^2\hat{q}^2,
+\end{equation}
+with the following commutation relation:
+\begin{equation}
+    [\hat{q},\hat{p}] = i\hbar.
+\end{equation}
+
+\subsubsection{Ladder Operators}
+
+\textit{Annihilation Operator}
+\begin{equation}
+    \hat{a}(t) = \sqrt{\frac{1}{2\hbar m\omega}}(m\omega\hat{q}(t) + i\hat{p}t)
+\end{equation}
+\noindent
+\textit{Creation Operator}
+\begin{equation}
+    \hat{a}^\dagger(t) = \sqrt{\frac{1}{2\hbar m\omega}}(m\omega\hat{q}(t) - i\hat{p}t)
+\end{equation}
+\noindent
+\textit{Commutation Relation}
+\begin{equation}
+    [\hat{a},\hat{a}^\dagger] = 1
+\end{equation}
+\begin{equation}
+    [\hat{a},\hat{a}] = [\hat{a}^\dagger,\hat{a}^\dagger] = 1
+\end{equation}
+\begin{equation}
+    [\hat{a},(\hat{a}^\dagger)^n] = n(\hat{a}^\dagger^{n-1}
+\end{equation}
+\begin{equation}
+    [\hat{a}^n,\hat{a}^\dagger] = n\hat{a}^{n-1}
+\end{equation}
+
+\subsubsection{Quadratures}
+
+\textit{Position Quadrature}
+\begin{equation}
+    \hat{q}(t) = \sqrt{\frac{\hbar}{2m\omega}}\bigg(\hat{a}e^{-i\omega t} + \hat{a}^\dagger e^{i\omega t}\bigg)
+\end{equation}
+\noindent
+\textit{Momentum Quadrature}
+\begin{equation}
+    \hat{p}(t) = -i\sqrt{\frac{\hbar m\omega}{2}}\bigg(\hat{a}e^{-i\omega t} - \hat{a}^\dagger e^{i\omega t}\bigg)
+\end{equation}
+
+\subsubsection{Ladder Operators (Number States)}
+
+\textit{Annihilation Operator}
+\begin{equation}
+    \hat{a}\ket{n} = \sqrt{n}\ket{n-1}
+\end{equation}
+\noindent
+\textit{Creation Operator}
+\begin{equation}
+    \hat{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}
+\end{equation}
+
+\subsubsection{General Number State}
+
+\begin{equation}
+    \ket{n} = \frac{1}{\sqrt{n_!}}(\hat{a}^\dagger)^{n}\ket{0}
+\end{equation}
+
+\subsubsection{Number Operator}
+
+\begin{equation}
+    \hat{N}\ket{n} = \hat{a}^\dagger\hat{a}\ket{n} = n\ket{n}
+\end{equation}
+
+\subsubsection{$\mathbf{2^{\textbf{nd}}}$ Quantised Hamiltonian}
+
+\begin{equation}
+    \hat{H} = \hbar\omega\bigg(\hat{a}^\dagger\hat{a} + \frac{1}{2}\bigg) = \hbar\omega\bigg(\hat{N} + \frac{1}{2}\bigg)
+\end{equation}
+
+\subsubsection{Eigenvalues}
+
+\begin{equation}
+    E = \hbar\omega\bigg(n + \frac{1}{2}\bigg)
+\end{equation}
+
+\subsection{Quantum EM Field}
+
+\subsubsection{Electric Field}
+
+\begin{equation}
+\begin{split}
+    \hat{\mathbf{E}}(\mathbf{r},t) &= \frac{1}{(2\pi)^{3/2}}\sum_{\lambda}\int d^3\mathbf{k} \sqrt{\frac{\hbar\omega}{2\epsilon_0}}\mathbf{e}_\lambda(\mathbf{k})\\
+    &\cdot \big[\hat{a}_\lambda(\mathbf{k})e^{-i\chi} + \hat{a}_\lambda^\dagger(\mathbf{k})e^{i\chi}\big],
+\end{split}
+\end{equation}
+where $\chi = \omega t - \mathbf{k\cdot r} - \pi/2.$
+
+\subsubsection{Magnetic Field}
+
+\begin{equation}
+\begin{split}
+    \hat{\mathbf{B}}(\mathbf{r},t) &= \frac{1}{(2\pi)^{3/2}}\sum_{\lambda}\int d^3\mathbf{k} \sqrt{\frac{\hbar}{2\epsilon_0\omega}}\mathbf{k} \times \mathbf{e}_\lambda(\mathbf{k})\\
+    &\cdot \big[\hat{a}_\lambda(\mathbf{k})e^{-i\chi} + \hat{a}_\lambda^\dagger(\mathbf{k})e^{i\chi}\big]
+\end{split}
+\end{equation}
+
+\subsubsection{Hamiltonian}
+
+\textit{Continuum}
+\begin{equation}
+\begin{split}
+    \hat{H} &= \sum_\lambda\int d^3\mathbf{k} \hbar\omega\big[\hat{N}_\lambda\mathbf{k} + \frac{1}{2}\delta(0)\big]\\
+    &= \sum_\lambda\int d^3\mathbf{k}\hbar\omega\hat{N}_\lambda(\mathbf{k}) + \infty
+\end{split}
+\end{equation}
+
+\noindent
+\textit{Discrete}
+\begin{equation}
+\begin{split}
+    \hat{H} &= \sum_\lambda\sum_\mathbf{k} \hbar\omega\big[\hat{N}_\lambda\mathbf{k} + \frac{1}{2}\big]\\
+    &= \sum_\lambda\sum_\mathbf{k} \hbar\omega\hat{N}_\lambda\mathbf{k} + \infty
+\end{split}
+\end{equation}
+
+\section{Single-Mode Light}
+
+\subsection{Cavity Photon Dispersion}
+
+\begin{equation}
+    \hbar\omega \approx \omega_\text{cav} + \frac{\hbar^2 q^2}{2m_\text{cav}}
+\end{equation}
+
+\subsection{Electric Field}
+
+\begin{equation}
+    E(\chi) = \frac{1}{2}\big(\hat{a}^{-i\chi} + \hat{a}^\dagger e^{i\chi}\big)
+\end{equation}
+
+\subsection{Quadrature Operators}
+
+\begin{equation}
+    \hat{X} = \frac{1}{2}(\hat{a} + \hat{a}^\dagger)
+\end{equation}
+\begin{equation}
+    \hat{Y} = -i\frac{1}{2}(\hat{a} - \hat{a}^\dagger)
+\end{equation}
+
+\subsection{Ladder Operators}
+
+\textit{Annihilation}
+\begin{equation}
+    \hat{a} = \hat{X} + i\hat{Y}
+\end{equation}
+\noindent
+\textit{Creation}
+\begin{equation}
+    \hat{a}^\dagger = \hat{X} - i\hat{Y}
+\end{equation}
+
+\subsection{Electric Field (Cont.)}
+
+\begin{equation}
+    \hat{E}(\chi) = \hat{X}\cos(\chi) + \hat{Y}\sin{\chi}
+\end{equation}
+
+\subsection{EM Field Hamiltonian}
+
+\begin{equation}
+    \hat{H} = \hbar\omega(\hat{X}^2 + \hat{Y}^2)
+\end{equation}
+
+\subsection{Expectation Values}
+
+\subsubsection{General Expression}
+
+For number states:
+
+\begin{equation}
+    \braket{\hat{A}} = \braket{n|\hat{A}|n}
+\end{equation}
+
+\subsubsection{Quadrature Expectation Values}
+
+\begin{equation}
+    \braket{\hat{X}} = \braket{\hat{Y}} = 0
+\end{equation}
+
+\subsubsection{Electric Field Expectation Value}
+
+\begin{equation}
+    \braket{\hat{E}(\chi)} = 0
+\end{equation}
+
+\subsection{Variances}
+
+\subsubsection{General Expression}
+
+\begin{equation}
+    (\Delta A)^2 = \braket{(\hat{A} - \langle\hat{A}\rangle)^2} = \braket{\hat{A}^2} - \braket{\hat{A}}^2
+\end{equation}
+
+\subsubsection{Quadrature Variances}
+
+\begin{equation}
+    (\Delta X)^2 = (\Delta Y)^2 = \frac{1}{2}\bigg(n + \frac{1}{2}\bigg)
+\end{equation}
+
+\subsection{Uncertainties}
+
+\subsubsection{Quadrature Uncertainty}
+
+\begin{equation}
+    \Delta X\Delta Y \geq \frac{1}{4}
+\end{equation}
+
+\subsubsection{Electric Field Uncertainty}
+
+\begin{equation}
+    \Delta E(\chi_1)\Delta E(\chi_2) \geq \frac{1}{4}|\sin(\chi_1 - \chi_2)|
+\end{equation}
+
+\subsection{Signal}
+
+\begin{equation}
+    \mathcal{S} = \langle\hat{E}(\chi)\rangle
+\end{equation}
+
+\subsection{Noise}
+
+\begin{equation}
+    \mathcal{N} = (\Delta E(\chi))^2
+\end{equation}
+
+\subsection{Signal-to-Noise Ratio}
+
+\begin{equation}
+    \text{SNR} = \frac{\mathcal{S}^2}{\mathcal{N}} = \frac{\langle\hat{E}(\chi)\rangle^2}{(\Delta E(\chi))^2}
+\end{equation}
+
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=70mm]{images/single_mode.png}
+\end{figure}
+
+\section{Coherent States}
+
+We need to find states of light with a well-defined classical limit, with oscillating mean and minimised variance. Single mode light has constant mean of zero.
+
+\subsection{Eigenstates}
+
+We can only find eigenstates for one of these operators (either $\hat{a}$ or $\hat{a}^\dagger$).
+\subsubsection{Right Eigenstate}
+
+\begin{equation}
+    \hat{a}\ket{\alpha} = \alpha\ket{\alpha}
+\end{equation}
+
+\subsubsection{Dual Right Eigenstate}
+
+\begin{equation}
+    \bra{\alpha}\hat{a}^\dagger= \bra{\alpha}\alpha^*
+\end{equation}
+Note: no eigenstate of $\hat{a}^\dagger$ exists.
+
+\subsection{General Coherent State}
+
+\begin{equation}
+    \ket{\alpha} = e^{-|\alpha|^2/2}\sum_{n=0}^\infty \frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\end{equation}
+
+\subsection{Electric Field Expectation Value}
+
+\begin{equation}
+    \braket{\alpha|\hat{E}(\chi)|\alpha} = |\alpha|\cos(\chi-\theta)
+\end{equation}
+
+\subsection{Properties of Coherent States}
+
+\subsubsection{Number Expectation Value}
+
+\begin{equation}
+    \braket{\alpha|\hat{N}|\alpha} = |\alpha|^2
+\end{equation}
+
+\subsubsection{Probability to Observe System in Vacuum State}
+
+\begin{equation}
+    P(0) = |\braket{0|\psi}|^2
+\end{equation}
+
+\subsubsection{Probability of n Photons}
+
+\begin{equation}
+    P(n) = |\braket{n|\psi}|^2
+\end{equation}
+
+\subsubsection{Distribution}
+
+\begin{equation}
+    P(n)\ket{\alpha} = |\braket{n|\alpha}|^2 = e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}
+\end{equation}
+This is a Poisson distribution.
+
+\subsubsection{Overcompleteness Relation}
+
+Coherent states do not form a complete orthonormal set. Instead, it forms an overcomplete set. The overcompleteness relation is as follows:
+\begin{equation}
+    \int d^2\alpha\ket{\alpha}\bra{\alpha} = \pi\mathds{1}
+\end{equation}
+
+\subsection{Classical Average}
+
+\begin{equation}
+    \overline{N} = \sum_{n=0}^\infty NP_N(\alpha) = |\alpha|^2
+\end{equation}
+
+\subsection{Overlap of Two Coherent States}
+
+\begin{equation}
+    |\braket{\beta|\alpha}|^2 = e^{-|\beta - \alpha|^2}
+\end{equation}
+
+\subsection{Fracticonal Uncertainty}
+
+\begin{equation}
+    \text{Fractional Uncert.} = \frac{1}{\sqrt{\braket{\hat{N}}}}
+\end{equation}
+
+\subsection{Signal}
+
+\begin{equation}
+    \mathcal{S} = |\alpha|\cos(\chi - \theta)
+\end{equation}
+
+\subsection{Noise}
+
+\begin{equation}
+    \mathcal{N} = \frac{1}{4}
+\end{equation}
+
+\subsection{Signal-to-Noise Ratio}
+
+\begin{equation}
+    \text{SNR} = 4|\alpha|^2\cos^2(\chi - \theta)
+\end{equation}
+
+\subsection{Quadratures}
+
+\begin{equation}
+    \braket{X} = \braket{\alpha|\hat{X}|\alpha} = |\alpha|\cos\theta
+\end{equation}
+\begin{equation}
+    \braket{Y} = \braket{\alpha|\hat{Y}|\alpha} = |\alpha|\sin\theta
+\end{equation}
+
+\subsection{Quadrature Uncertainty}
+
+\begin{equation}
+    \braket{\hat{X}}\braket{\hat{Y}} = \frac{1}{4}
+\end{equation}
+Note: variances do not depend on amplitude or photon number.
+
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=70mm]{images/coherent.png}
+\end{figure}
+
+\subsection{Uncertainty Relation Between Number of Photons and Phase}
+
+\begin{equation}
+    \Delta N\Delta\phi \approx \frac{1}{2}
+\end{equation}
+
+\section{Thermal Radiation}
+
+\subsection{Multi-Mode Hamiltonian}
+
+\begin{equation}
+    \hat{H} = \sum_\lambda\sum_\mathbf{k}\hbar\omega\hat{N}_{\lambda\mathbf{k}}
+\end{equation}
+
+\subsection{Boltzmann-Gibbs Distribution}
+
+\begin{equation}
+\begin{split}
+    P(n_{\lambda\mathbf{k}}) &= \frac{\exp\big(-\frac{n_{\lambda\mathbf{k}}\hbar\omega}{k_BT}\big)}{\sum_{n_{\lambda\mathbf{k}}=0}^\infty \exp\big(-\frac{n_{\lambda\mathbf{k}}\hbar\omega}{k_BT}\big)} \\
+    &= \bigg(1-\exp\bigg(-\frac{\hbar\omega}{k_BT}\bigg)\bigg)\exp\bigg(-\frac{n_{\lambda\mathbf{k}}\hbar\omega}{k_BT}\bigg)
+\end{split}
+\end{equation}
+
+\subsection{System State}
+
+\begin{equation}
+    \hat{\rho} = \sum_{n_{\lambda\mathbf{k} = 0}}P(n_{\lambda\mathbf{k}})\ket{n_{\lambda\mathbf{k}}}\bra{n_{\lambda\mathbf{k}}}
+\end{equation}
+
+\subsection{Average Number of Photons}
+
+\begin{equation}
+    \braket{\hat{N}_{\lambda\mathbf{k}}} = tr\{\hat{\rho}\hat{N}_{\lambda\mathbf{k}}\}
+\end{equation}
+This gives the Bose-Einstein/Planck distribution (see below).
+
+\subsection{Bose-Einstein Distribution}
+
+\begin{equation}
+    \braket{\hat{N}_{\lambda\mathbf{k}}} = \frac{1}{\exp\big(\frac{\hbar\omega}{k_BT}\big) - 1}
+\end{equation}
+
+\subsection{Thermal Light Distribution}
+
+\subsubsection{General Expression}
+
+\begin{equation}
+    P(n) = \frac{\braket{\hat{N}}^n}{(1+ \braket{\hat{N}})^{1+n}}
+\end{equation}
+
+\subsubsection{Variance}
+
+\begin{equation}
+    (\Delta N)^2 = \braket{\hat{N}}^2 + \braket{\hat{N}}
+\end{equation}
+
+\subsubsection{Uncertainty}
+
+\begin{equation}
+    \Delta N = \sqrt{\braket{\hat{N}}^2 + \braket{\hat{N}}}
+\end{equation}
+
+\subsubsection{Fractional Uncertainty}
+
+\begin{equation}
+    \frac{\Delta N}{\hat{N}} = \sqrt{1 + \frac{1}{\braket{\hat{N}}}}
+\end{equation}
+Thermal light is therefore super-Poissonian since $(\Delta N)^2 > \braket{\hat{N}}$. Coherent light is Poissonian ($(\Delta N)^2 = \braket{\hat{N}}$) and Fock states are sub-Poissonian $(\Delta N)^2 < \braket{\hat{N}}$.
+
+\subsection{Joint Distribution}
+
+\subsubsection{Distribution}
+
+\begin{equation}
+    P(\{n_{\lambda\mathbf{k}}\}) = \prod_\lambda\prod_\mathbf{k} P(n_{\lambda\mathbf{k}})
+\end{equation}
+
+\subsubsection{Density Matrix}
+
+\begin{equation}
+    \hat{\rho} = \sum_{\{n_{\lambda\mathbf{k}}\}} P(\{n_{\lambda\mathbf{k}}\})\ket{\{n_{\lambda\mathbf{k}}\}}\bra{\{n_{\lambda\mathbf{k}}\}}
+\end{equation}
+
+\section{Beam Splitters and Interferometers}
+
+A beam splitter partially refelcts and partially transmits incident objects.
+
+\subsection{Classical Beam Splitter}
+
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=50mm]{images/bs_classical.png}
+\end{figure}
+
+\subsubsection{Output States}
+
+\begin{equation}
+    E_3 = R_{31}E_1 + T_{32}E_2
+\end{equation}
+\begin{equation}
+    E_4 = R_{42}E_2 + T_{41}E_1
+\end{equation}
+
+\subsubsection{Energy Conservation}
+
+\begin{equation}
+    |E_3|^2 + |E_4|^2 = |E_1|^2 + |E_2|^2
+\end{equation}
+
+\subsubsection{Transfer Matrix}
+
+\begin{equation}
+    \hat{M} =
+    \begin{pmatrix}
+    |R|e^{i\phi_R} & |T|e^{i\phi_T}\\
+    |T|e^{i\phi_T} & |R|e^{i\phi_R}
+    \end{pmatrix}
+\end{equation}
+It can be shown that $\hat{M}^{-1} = \hat{M}^\dagger$, so the beamsplitter corresponds to unitary evolution and conserves energy.
+
+\subsection{Quantum Beam Splitter}
+
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=50mm]{images/bs_quantum.png}
+\end{figure}
+
+\subsubsection{Output States}
+
+\begin{equation}
+    \hat{a}_3 = R\hat{a}_1 + T\hat{a}_2
+\end{equation}
+\begin{equation}
+    \hat{a}_4 = R\hat{a}_2 + T\hat{a}_1
+\end{equation}
+
+\subsubsection{Input States}
+
+\begin{equation}
+    \hat{a}_1 = R^*\hat{a}_3 + T^*\hat{a}_4
+\end{equation}
+\begin{equation}
+    \hat{a}_2 = R^*\hat{a}_4 + T^*\hat{a}_3
+\end{equation}
+
+\subsubsection{Commutation Relations}
+
+\begin{equation}
+    [\hat{a}_n, \hat{a}^\dagger_{n'}] = \delta_{nn'}
+\end{equation}
+
+\subsubsection{Transfer Matrix}
+
+\begin{equation}
+    \hat{M} =
+    \begin{pmatrix}
+    R & T\\
+    T & R
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{Photon Number Conservation}
+
+A result of energy conservation
+\begin{equation}
+    \hat{N}_3 + \hat{N}_4 = \hat{N}_1 + \hat{N}_2
+\end{equation}
+
+\subsubsection{Single-Photon Input Example}
+
+\begin{equation}
+\begin{split}
+    \ket{1}_1\ket{0}_2 &= \hat{a}_1^\dagger\ket{0}_1\ket{0}_2\\
+    &= \hat{a}_1^\dagger\ket{0}\\
+    &= (R\hat{a}_3^\dagger + T\hat{a}_4^\dagger)\ket{0}\\
+    &= R\ket{1}_3\ket{0}_4 + T\ket{0}_3\ket{1}_4
+\end{split}
+\end{equation}
+
+\subsubsection{Measurement Operator Example}
+
+Want to find $|\braket{1|\psi}|^2$:
+\begin{equation}
+    \hat{P} = \ket{1}_3\bra{1}\otimes\mathds{1}_4
+\end{equation}
+
+\subsection{Mach-Zender Interferometer}
+
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=70mm]{images/mz_interferometer.png}
+\end{figure}
+
+\subsubsection{Reflection Operators}
+
+\begin{equation}
+    R_{MZ} = e^{ikz_1}R^2 + e^{ikz_2}T^2
+\end{equation}
+\begin{equation}
+    R'_{MZ} = e^{ikz_2}R^2 + e^{ikz_1}T^2
+\end{equation}
+
+\subsubsection{Transmission Operator}
+
+\begin{equation}
+    T_{MZ} = (e^{ikz_1} + e^{ikz_2})RT
+\end{equation}
+
+\subsubsection{Generalised Inputs}
+
+\begin{equation}
+    \hat{a}_1 = R^*_{MZ}\hat{a}_3 + T^*_{MZ}\hat{a}_4
+\end{equation}
+\begin{equation}
+    \hat{a}_2 = R'^*_{MZ}\hat{a}_4 + T^*_{MZ}\hat{a}_3
+\end{equation}
+
+\subsection{Two-Photon Interference}
+
+Generally only happens if the photons are in different arms:
+\begin{equation}
+\begin{split}
+    \ket{1}_1\ket{1}_2 &= \sqrt{2}RT\ket{2}_3\ket{0}_4 + (R^2 + T^2)\ket{1}_3\ket{1}_4\\
+    &-+ \sqrt{2}RT\ket{0}_3\ket{2}_4
+\end{split}
+\end{equation}
+The (1,1) term contains the phase information and so can be tuned to disappear (destructive interference).
+\begin{figure}[h!]
+\centering 
+\includegraphics[width=50mm]{images/dip.png}
+\end{figure}
+
+\section{Light-Matter Interaction}
+
+\subsection{Light-Matter Coupling Hamiltonian}
+
+\begin{equation}
+    \hat{H} = \hat{H}_{EM}(t) + \hat{H}_A(t) + \hat{V}(t),
+\end{equation}
+where $\hat{H}_{EM}(t)$ is the Hamiltonian for the free EM field, $\hat{H}_A(t)$ is the Hamiltonian for the free atom, and $\hat{V}(t)$ is the interaction Hamiltonian.
+
+\subsection{Electric Field Term}
+
+\subsubsection{EM Field Hamiltonian}
+
+\begin{equation}
+\begin{split}
+    \hat{H}_{EM}(t) &= \frac{1}{2}\sum_\lambda\int d^3\mathbf{k}\hbar\omega\big[\hat{a}_\lambda(\mathbf{k},t)\hat{a}_\lambda^\dagger(\mathbf{k},t)\\
+    &+ \hat{a}_\lambda^\dagger(\mathbf{k},t)\hat{a}_\lambda(\mathbf{k},t)\big]
+\end{split}
+\end{equation}
+
+
+\subsection{Atomic Term}
+
+Using example of two-level atom
+
+\subsubsection{Lowering Operator}
+
+\begin{equation}
+    \hat{P} = \hat{\sigma}^- = \ket{1}\bra{2}
+\end{equation}
+
+\subsubsection{Raising Operator}
+
+\begin{equation}
+    \hat{P}^\dagger = \hat{\sigma}^+ = \ket{2}\bra{1}
+\end{equation}
+
+\subsubsection{Properties of the Ladder Operators}
+
+\begin{equation}
+    \hat{P}^\dagger\hat{P} = \ket{2}\bra{2}
+\end{equation}
+\begin{equation}
+    \hat{P}\hat{P}^\dagger = \ket{1}\bra{1}
+\end{equation}
+
+\subsubsection{Dipole Moment Operator}
+
+\begin{equation}
+    \hat{D} = D_{12}\ket{1}\bra{2} + D_{21}\ket{2}\bra{1} = D_{12}(\hat{P} + \hat{P}^\dagger)
+\end{equation}
+
+\subsubsection{Atomic Hamiltonian}
+
+\begin{equation}
+    \hat{H}_A(t) = \hbar\omega_1\hat{P}(t)\hat{P}^\dagger(t) + \hbar\omega_2\hat{P}^\dagger(t)\hat{P}(t)
+\end{equation}
+
+\subsubsection{Transition Energy}
+
+\begin{equation}
+    \hbar\omega_0 = \hbar\omega_2 - \hbar\omega_1
+\end{equation}
+
+\subsection{Interaction Term}
+
+\subsubsection{Interaction Hamiltonian}
+
+\begin{equation}
+\begin{split}
+    \hat{V}(t) &= \frac{ie}{(2\pi)^{3/2}}\sum_\lambda\int d^3\mathbf{k}\sqrt{\frac{\hbar\omega}{2\epsilon_0}}e_\lambda(\mathbf{k})\\
+    &\cdot D_{12}\big[\hat{a}_\lambda(\mathbf{k},t)\hat{P}^\dagger(t) - \hat{a}^\dagger_\lambda(\mathbf{k},t)\hat{P}(t)\big]
+\end{split}
+\end{equation}
+
+\subsection{Euler Decomposition for Pauli Matrices}
+
+\begin{equation}
+    e^{i\phi(\mathbf{n}\cdot\boldsymbol{\sigma})} = \mathds{1}\cos\phi + i(\mathbf{n}\cdot\boldsymbol{\sigma})\sin\phi
+\end{equation}
+
+\subsection{BCH Formulae}
+
+\subsubsection{Unitary Transformations}
+
+\begin{equation}
+    e^{\hat{A}}\hat{B}e^{-\hat{A}} = \hat{B} + [\hat{A}, \hat{B}] + \frac{1}{2!}[\hat{A},[\hat{A},\hat{B}]] + ...
+\end{equation}
+
+\subsubsection{Serial Matrix Exponents}
+
+\small
+\begin{equation}
+    e^{\hat{A}}e^{\hat{B}} = \exp\bigg(\hat{A} + \hat{B} + \frac{1}{2}[\hat{A},\hat{B}] + \frac{1}{12}[\hat{A},[\hat{A},\hat{B}]] + ...\bigg)
+\end{equation}
+\normalsize
+
+\subsection{Final Wavefunction in Interaction Picture}
+
+\begin{equation}
+    \ket{\psi(t)} = \ket{\psi(0)} - \frac{i}{\hbar}\int_0^tdt'\hat{V}(t')\ket{\psi(0)}
+\end{equation}
+
+\subsection{Light Absorption}
+
+\subsubsection{Transition Probability}
+
+\footnotesize
+\begin{equation}
+    P_{1\to 2}(t) = \frac{e^2\omega}{8\pi^3\hbar\epsilon_0}[e_\lambda(\mathbf{k})\cdot D_{12}]^2n_\lambda(\mathbf{k})\frac{\sin^2\big[\frac{1}{2}(\omega_0 - \omega)t\big]}{(\omega_0-\omega)^2}
+\end{equation}
+\normalsize
+
+\subsubsection{Zero Detuning}
+
+\begin{equation}
+    P_{1\to 2}(t) = \frac{e^2\omega}{16\pi^3\hbar\epsilon_0}[e_\lambda(\mathbf{k})\cdot D_{12}]^2n_\lambda(\mathbf{k})t^2
+\end{equation}
+
+\subsubsection{Non-Zero Detuning}
+
+For non-zero detuning ($\delta = \omega_0 - \omega \neq 0$), the transition probability oscillates in time and is suppressed by the denominator. \newline
+
+\noindent
+\textit{Probability}
+\begin{equation}
+    P_{1\to 2}(t) = \frac{\pi e^2D_{12}^2W(\omega_0)}{3\hbar^2\epsilon_0}t,
+\end{equation}
+where $W$ is the energy density. \newline
+
+\noindent
+\textit{Rate}
+\begin{equation}
+    \frac{dP_{1\to 2}(t)}{dt} = \frac{\pi e^2D_{12}^2W(\omega_0)}{3\hbar^2\epsilon_0}
+\end{equation}
+This is also known as Fermi's Golden Rule. \newline
+
+\noindent
+\textit{Einstein B Coefficient}
+\begin{equation}
+    B_{12} = \frac{\pi e^2 D_{12}^2}{3\hbar^2\epsilon_0}
+\end{equation}
+
+\subsection{Light Emission}
+
+\subsubsection{Transition Probability}
+
+\footnotesize
+\begin{equation}
+    P_{2\to 1}(t) = \frac{e^2\omega}{4\pi^3\hbar\epsilon_0}[e_\lambda(\mathbf{k})\cdot D_{12}]^2(n_\lambda(\mathbf{k})+1)\frac{\sin^2\big[\frac{1}{2}(\omega_0 - \omega)t\big]}{(\omega_0-\omega)^2}
+\end{equation}
+\normalsize
+
+\subsubsection{Spontaneous and Stimulated Emission}
+
+\begin{equation}
+    P_{2\to 1}(t) = P_{2\to 1}^\text{stim}(t) + P_{2\to 1}^\text{spon}(t)
+\end{equation}
+
+\subsubsection{Stimulated Emission}
+
+\textit{Probability}
+\footnotesize
+\begin{equation}
+    P_{2\to 1}^\text{stim}(t) = \frac{e^2\omega}{4\pi^3\hbar\epsilon_0}[e_\lambda(\mathbf{k})\cdot D_{12}]^2n_\lambda(\mathbf{k})\frac{\sin^2\big[\frac{1}{2}(\omega_0 - \omega)t\big]}{(\omega_0-\omega)^2}
+\end{equation}
+\normalsize
+\noindent
+\textit{Rate}
+\begin{equation}
+    \frac{dP_{2\to 1}^\text{stim}(t)}{dt} = \frac{\pi e^2D_{12}^2 W(\omega_0)}{3\hbar^2\epsilon_0}
+\end{equation}
+\noindent
+\textit{Einstein A Coeffieient}
+\begin{equation}
+    A_{21} = \frac{\pi e^2D_{12}^2}{3\hbar^2\epsilon_0}
+\end{equation}
+
+\subsubsection{Spontaneous Emission}
+
+\textit{Probability}
+\footnotesize
+\begin{equation}
+    P_{2\to 1}^\text{spon}(t) = \frac{e^2\omega}{4\pi^3\hbar\epsilon_0}[e_\lambda(\mathbf{k})\cdot D_{12}]^2\frac{\sin^2\big[\frac{1}{2}(\omega_0 - \omega)t\big]}{(\omega_0-\omega)^2}
+\end{equation}
+\normalsize
+\noindent
+\textit{Rate}
+\begin{equation}
+    \frac{dP_{2\to 1}^\text{spon}(t)}{dt} = \frac{\pi e^2D_{12}^2 \omega_0^3}{3\pi\hbar\epsilon_0 c^3}
+\end{equation}
+\noindent
+\textit{Einstein A Coeffieient}
+\begin{equation}
+    A_{21} = \frac{\pi e^2D_{12}^2 \omega_0^3}{3\pi\hbar\epsilon_0 c^3}
+\end{equation}
+
+\section{Cavity QED}
+
+\subsection{Hamiltonian}
+
+\begin{equation}
+\begin{split}
+    \hat{H} &= \hbar\omega\hat{a}^\dagger\hat{a} + \hbar\omega_0\ket{2}\bra{2}\\
+    &- \frac{\hbar}{2}(E_0\hat{a}+E_0^*\hat{a}^\dagger)(D_{12}\hat{\sigma}^+ + D_{12}\hat{\sigma}^-)
+\end{split}
+\end{equation}
+
+\subsection{Transformations into Rotating Energy Frame}
+
+\subsubsection{Hamiltonian}
+
+\begin{equation}
+    \hat{H} \to \hat{\mathcal{U}}\hat{H}\hat{\mathcal{U}}^\dagger + i\hbar\frac{d\hat{\mathcal{U}}}{dt}\hat{\mathcal{U}}^\dagger
+\end{equation}
+
+\subsubsection{Wavefunction}
+
+\begin{equation}
+    \ket{\psi} = \hat{\mathcal{U}}\ket{\psi}
+\end{equation}
+
+\subsection{Unitary Operator}
+
+\begin{equation}
+    \mathcal{U} = e^{i\omega t\hat{a}^\dagger\hat{a}}e^{i\omega t\ket{2}\bra{2}} = \mathcal{U}_a\mathcal{U}_2
+\end{equation}
+
+\subsection{Hamiltonian after Rotation of Cavity Mode}
+
+\begin{equation}
+\begin{split}
+    \hat{H}' &= \hbar\omega_0\ket{2}\bra{2} - \frac{\hbar}{2}(E_0e^{-i\omega t}\hat{a} + E_0^*e^{-\omega t}\hat{a}^\dagger)\\
+    &\cdot (D_{21}\hat{\sigma}^+ + D_{12}\hat{\sigma}^-)
+\end{split}
+\end{equation}
+
+\subsection{Hamiltonian after Rotation of Atomic Terms}
+
+\begin{equation}
+\begin{split}
+    \hat{H}'' &= \hbar\delta\ket{2}\bra{2} + \frac{\hbar g}{2}(\hat{a}\hat{\sigma}^+ + \hat{a}\hat{\sigma}^-e^{-2i\omega t})\\
+    &+ \frac{\hbar g^*}{2}(\hat{a}^\dagger\hat{\sigma}^+e^{21\omega t} + \hat{a}^\dagger\hat{\sigma}^-),
+\end{split}
+\end{equation}
+where $g = -E_0D_{21}$. After a RWA, this gives:
+\begin{equation}
+    \hat{H}'' = \hbar\delta\ket{2}\bra{2} + \frac{\hbar}{2}(g\hat{a}\hat{\sigma}^+ + g^*\hat{a}^\dagger\hat{\sigma}^-),
+\end{equation}
+which is know as the \textbf{atom-cavity Hamiltonian}.
+
+\subsection{Jaynes-Cummings Model}
+
+\begin{equation}
+    \hat{H}_{JC} = \hbar\delta\ket{2}\bra{2} + \frac{\hbar}{2}(g\hat{a}\hat{\sigma}^+ + g^*\hat{a}^\dagger\hat{\sigma}^-)
+\end{equation}
+
+\subsection{Rabi Model}
+
+Describes a two-level atom is the strong oscillation electric field e.g. plasmonic cavity.
+\begin{equation}
+    \hat{H}_{R} = \hbar\delta\hat{\sigma}^+\hat{\sigma}^- + \frac{\hbar}{2}(\Omega\hat{\sigma}^+ + \Omega^-\hat{\sigma}^-)
+\end{equation}
+
+\subsubsection{Eigenvalues}
+
+This system can be solved by diagonalisation.
+\begin{equation}
+    \lambda_\pm = \frac{1}{2}\big(\delta \pm \sqrt{\delta^2 + |\Omega|^2}\big)
+\end{equation}
+
+\subsection{Dressed Atomic States}
+
+These are eigenstates of the interacting Hamiltonian.
+
+\subsubsection{Eigenvalue Equation}
+
+\begin{equation}
+    \hat{H}_R\ket{\psi_\pm} = \hbar\lambda_\pm\ket{\psi_\pm}
+\end{equation}
+
+\subsubsection{Eigenstates}
+
+\begin{equation}
+    \ket{\psi_+^{(n)}} = \cos\theta_n\ket{n,1} + \sin\theta_n\ket{n-1,2}
+\end{equation}
+\begin{equation}
+    \ket{\psi_-^{(n)}} = \cos\theta_n\ket{n,1} - \sin\theta_n\ket{n-1,2},
+\end{equation}
+where $\theta_n$ is the mixing angle.
+
+\subsubsection{Mixing Angle}
+
+\begin{equation}
+    \theta_n = \arctan\bigg(\frac{\delta + \sqrt{\delta^2 + ng^2}}{g\sqrt{n}}\bigg)
+\end{equation}
+
+\subsection{Dicke Model}
+
+Atomic ensemble coupled to cavity mode with no RWA used: useful for describing ultra strong light-matter coupling and phase transitions.
+\begin{equation}
+    \hat{H} = \sum_i\epsilon\hat{\sigma}_i^z + \omega\hat{a}^\dagger\hat{a}+ \sum_i\frac{g}{2}(\hat{a}^\dagger + \hat{a})(\hat{\sigma}_i^+ + \hat{\sigma}_i^{-})
+\end{equation}
+
+\section{Master Equation and Decoherence}
+
+\subsection{Liouville-von Neumann Equation}
+
+\begin{equation}
+    \frac{d\hat{\rho}}{dt} = -\frac{i}{\hbar}[\hat{H},\hat{\rho}]
+\end{equation}
+\subsection{GKLS Master Equation}
+
+\begin{equation}
+    \frac{d\hat{\rho}}{dt} = -\frac{i}{\hbar} + \sum_i\bigg(\hat{C}_i\hat{\rho}\hat{C}_i^\dagger - \frac{1}{2}\hat{C}_i^\dagger\hat{C}_i\hat{\rho} - \frac{1}{2}\hat{\rho}\hat{C}_i^\dagger\hat{C}_i\bigg)
+\end{equation}
+
+\section{Coherence Functions}
+
+\subsection{Correlation Function}
+
+\begin{equation}
+    G^{(1)}(x_1, x_2) = tr\{\hat{\rho}\hat{E}^{(-)}(x_1)\hat{E}^{(+)}(x_2)\}
+\end{equation}
+
+\subsection{First-Order Coherence Function}
+
+\begin{equation}
+    g^{(1)}(x_1, x_2) = \frac{G^{(1)}(x_1, x_2)}{\sqrt{G^{(1)}(x_1, x_1)G^{(1)}(x_2, x_2)}},
+\end{equation}
+which is bounded by $0 \leq g^{(1)} \leq 1$. The closer to 1 $|g^{(1)}(x_1, X_2)|$ is, the more coherent it is.
+
+\subsection{Classical Intensity-Intensity Correlator}
+
+\begin{equation}
+    C(t,t+\tau) = \braket{I(t)I(t+\tau)}
+\end{equation}
+
+\subsection{Second-Order Coherence Function}
+
+\begin{equation}
+    g^{(2)}(x_1, x_2; x_2, x_1) = \frac{G^{(2)}(x_1, x_2; x_2, x_1)}{G^{(1)}(x_1, x_1)G^{(1)}(x_2, x_2)},
+\end{equation}
+This can be measured using the Hanbury-Brown-Twiss (HBT) interferometer. It describes the probability to detect a photon after one has already been detected and can be re-expressed as:
+\begin{equation}
+    g^{(2)}(0) = \frac{\braket{\hat{a}^\dagger \hat{a}^\dagger \hat{a}\hat{a}}}{\braket{\hat{a}^\dagger \hat{a}}^2} = 1 + \frac{(\Delta N)^2 - \braket{\hat{N}}}{\braket{\hat{N}}^2},
+\end{equation}
+where $\tau$ is the delay. Zero-delay results can be summarised as follows:
+\begin{itemize}
+    \item{$g^{(2)}(0) < 1$ - antibunching (number)}
+    \item{$g^{(2)}(0) = 1$ - coherent}
+    \item{$g^{(2)}(0) > 1$ - bunching (thermal)}
+\end{itemize}
+
+\subsection{Visibility}
+
+\begin{equation}
+    V = |g^{(1)}(\tau)| = \frac{I_\text{max} - I_\text{min}}{I_\text{max} + I_\text{min}}
+\end{equation}
+
+\section{Squeezing}
+
+\subsection{Polarisation}
+
+\begin{equation}
+    \mathbf{P} = \epsilon_0\chi^{(1)}\mathbf{E} + \epsilon_0\chi^{(2)}\mathbf{E}\cdot\mathbf{E} + \epsilon_0\chi^{(3)}\mathbf{E}\cdot\mathbf{E}\cdot\mathbf{E} + ...
+\end{equation}
+
+\subsection{Chi-2/Parametric Processes}
+
+Convert 2 photons (at $\omega_1$ and $\omega_2$) to a single photon of frequency $\omega_1 + \omega_2$. This is called sum-frequency generation. The reverse process is called parametric down-conversion.
+
+\subsubsection{Parametric Down-Conversion Hamiltonian}
+
+\begin{equation}
+    \hat{H} = \hbar\omega\hat{a}^\dagger\hat{a} + \hbar\omega_p\hat{b}^\dagger\hat{b} + i\hbar\chi^{(2)}(\hat{a}^2\hat{b}^\dagger - \hat{a}^{\dagger 2}\hat{b})
+\end{equation}
+In the strong pump limit, $\hat{b}\to \beta\exp(-i\omega_p t)$ (quasiclassical approx.). Noting that $\eta = \chi^{(2)}\beta$ and choosing $\omega_p = 2\omega$, this Hamiltonian can be written in the interaction picture as:
+\begin{equation}
+    \hat{H}_I = i\hbar(\eta^*\hat{a}^2 - \eta\hat{a}^{\dagger 2})
+\end{equation}
+
+\subsection{Generalised Uncertainty Relation}
+
+If $[\hat{A}, \hat{B}] = i\hat{C}$:
+\begin{equation}
+    \braket{(\Delta\hat{A})^2}\braket{(\Delta\hat{B})^2} \geq \frac{1}{2}|\braket{\hat{C}}|^2
+\end{equation}
+
+\subsection{Quadrature-Squeezed States}
+
+Either:
+\begin{equation}
+    \braket{(\Delta\hat{A})^2} < \frac{1}{2}|\braket{\hat{C}}|,
+\end{equation}
+or:
+\begin{equation}
+    \braket{(\Delta\hat{B})^2} < \frac{1}{2}|\braket{\hat{C}}|.
+\end{equation}
+So, reducing variance in one of the components corresponds to squeezing.
+
+\subsection{Quadrature-Squeezed States of EM Field}
+
+\begin{equation}
+    \braket{(\Delta\hat{X})^2} < \frac{1}{4}
+\end{equation}
+\begin{equation}
+    \braket{(\Delta\hat{Y})^2} < \frac{1}{4}
+\end{equation}
+
+\subsection{Squeezing Parameter}
+
+\begin{equation}
+    S(\theta) = 4\Delta X^2(\theta) - 1,
+\end{equation}
+and so the state is squeezed if $-1 \leq S(\theta) < 0$ and $\hat{X}(\theta)$ is a generalised quadrature operator.
+
+\subsection{Displacement Operator}
+
+A unitary operator that prepares superposition states from the vacuum:
+\begin{equation}
+    \hat{D}(\alpha)\ket{0} = \ket{\alpha},
+\end{equation}
+where:
+\begin{equation}
+    \hat{D}(\alpha) = e^{(\alpha\hat{a}^\dagger - \alpha^*\hat{a})}
+\end{equation}
+
+\subsubsection{Properties of the Displacement Operator}
+
+The displacement operator must: 
+\begin{itemize}
+    \item{be unitary and generated by some Hamiltonian,}
+    \item{be combined from creation and annihilation operators, and}
+    \item{physically describe the process of displacing mean of the vacuum without touching the quadratures.}
+\end{itemize}
+It also has the following properties:
+\begin{equation}
+    \hat{D}(\alpha)\hat{a}\hat{D}^\dagger(\alpha) = \hat{a} - \alpha
+\end{equation}
+\begin{equation}
+    \hat{D}(\alpha)\hat{a}^\dagger\hat{D}^\dagger(\alpha) = \hat{a}^\dagger - \alpha^*
+\end{equation}
+\begin{equation}
+    \hat{D}^\dagger(\alpha)\hat{a}\hat{D}(\alpha) = \hat{a} + \alpha
+\end{equation}
+\begin{equation}
+    \hat{D}^\dagger(\alpha)\hat{a}^\dagger\hat{D}(\alpha) = \hat{a}^\dagger + \alpha^*
+\end{equation}
+
+\subsubsection{Generalised Displacement Fock State}
+
+\begin{equation}
+    \ket{n, \alpha} = \hat{D}(\alpha)\ket{n} = (\hat{a}^\dagger - \alpha^*)^n\ket{\alpha}
+\end{equation}
+
+\subsection{Squeezing Operator}
+
+A similar operator can be defined for squeezed states:
+\begin{equation}
+    \hat{S}(\zeta)\ket{0} = \ket{\zeta},
+\end{equation}
+where:
+\begin{equation}
+    \hat{S}(\zeta) = \exp{\bigg[\frac{1}{2}\big(\zeta^*\hat{a}^2 - \zeta\hat{a}^{\dagger 2}\big)\bigg]},
+\end{equation}
+and $\zeta = re^{-\theta}$, with $r$ being the squeezing parameter.
+
+\subsection{Squeezed Coherent States}
+
+\begin{equation}
+    \ket{\alpha, \zeta} = \hat{D}(\alpha)\hat{S}(\zeta)\ket{0}
+\end{equation}
+
+\subsection{Zero-Theta Squeezing}
+
+States with a large degree of squeezing are non-classical, allowing for optical quantum computing and communication processes to be carried out.
+
+\subsection{Chi-3/Kerr Processes}
+
+Convert 2 photons (at $\omega_1$ and $\omega_2$) to two at $\omega_3$ and $\omega_4$ or choose a mode as a single frequency and have resonant Kerr term.
+
+\subsection{Kerr Hamiltonian}
+
+\begin{equation}
+    \hat{H}_\text{Kerr} = \hbar\omega\hat{a}^\dagger\hat{a} + \frac{\hbar U}{2}\hat{a}^\dagger \hat{a}^\dagger \hat{a}\hat{a}
+\end{equation}
+
+\subsection{Rydberg Lattice Hamiltonian}
+
+\begin{equation}
+    \frac{H}{\hbar} = \sum_i\frac{\Omega_i}{2}\sigma_x^i - \sum_i\Delta_i n_i + \sum_{i<j}V_{ij}n_in_j
+\end{equation}
+
+\section{Quantum Communication}
+
+\subsection{Quantum Gateset}
+
+To implement gates using quantum computers, the gates must be unitary.
+
+\subsubsection{NOT}
+
+\begin{equation}
+    \text{NOT} = \hat{\sigma}_X =
+    \begin{pmatrix}
+    0 & 1\\
+    1 & 0
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{Pauli-Y}
+
+\begin{equation}
+    \hat{\sigma}_Y =
+    \begin{pmatrix}
+    0 & -i\\
+    i & 0
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{Pauli-Z}
+
+\begin{equation}
+    \hat{\sigma}_Z =
+    \begin{pmatrix}
+    1 & 0\\
+    0 & -1
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{Controlled NOT (CNOT)}
+
+Can induce and remove entanglement.
+\begin{equation}
+    \text{CNOT} = \ket{0}_1\bra{0} \otimes \mathds{1}_2 + \ket{1}_1\bra{1} \otimes \hat{X}_2
+\end{equation}
+\begin{equation}
+    \text{CNOT} =
+    \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{Hadamard (H)}
+Creates symmetric/anti-symmetric superposition states.
+\begin{equation}
+    \hat{H} = \frac{1}{\sqrt{2}}(\hat{X} + \hat{Z})
+\end{equation}
+\begin{equation}
+    \hat{H} = \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+    1 & 1\\
+    1 & -1
+    \end{pmatrix}
+\end{equation}
+\textbf{Properties}
+\begin{equation}
+    \hat{H}\hat{H} = \mathds{1}
+\end{equation}
+\begin{equation}
+    \hat{H} = \hat{H}^\dagger
+\end{equation}
+\begin{equation}
+    \hat{H} = \hat{H}^{-1}
+\end{equation}
+\textbf{Identities}
+\begin{equation}
+    \hat{H}\hat{Y}\hat{H} = -\hat{Y}
+\end{equation}
+\begin{equation}
+    \hat{H}\hat{Z}\hat{H} = -\hat{X}
+\end{equation}
+
+\subsubsection{Controlled Z (CZ)}
+\begin{equation}
+    \text{CZ} =
+    \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & -1
+    \end{pmatrix}
+\end{equation}
+
+\subsubsection{SWAP}
+
+\begin{equation}
+    \text{SWAP} =
+    \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{equation}
+
+\clearpage
+\appendix
+
+\section{Maths Appendix}
+\subsection{Matrices}
+
+\noindent
+\textbf{Transpose}
+\begin{equation}
+    A_{ij}^T = A_{ji}
+\end{equation}
+
+\noindent
+\textbf{Trace}
+\begin{equation}
+    tr(\mathbf{A}) = \sum{A_{ii}}
+\end{equation}
+
+\noindent
+\textbf{Adjoint Matrix} \newline
+
+\noindent
+A matrix of minors, $\alpha_{ij}$, with signs attached: \newline
+\begin{equation}
+    \text{adj}(A) = 
+    \begin{pmatrix}
+    + & - & + \\
+    - & + & - \\
+    + & - & + \\
+    \end{pmatrix}
+\end{equation}
+
+\noindent
+\textbf{Systems of Linear Equations} \newline
+
+\noindent
+Can be represented as:
+\begin{equation}
+    \textbf{AX} = \textbf{B},
+\end{equation}
+
+\noindent
+and can be solved by two methods: matrix inversion and Cramer's rule. \newline
+
+\noindent
+\textbf{Matrix Inversion Method}
+\begin{equation}
+    \mathbf{A}^{-1} = \frac{\text{adj}(A)}{|A|}
+\end{equation}
+
+\noindent
+\textbf{Cramer's Rule}
+\begin{equation}
+    x_i = \frac{|\mathbf{C}(i)|}{|\mathbf{A}|}
+\end{equation}
+
+\noindent
+\textbf{Matrix Eigenvalue Equation}
+\begin{equation}
+    \mathbf{A}\mathbf{r} = \lambda \mathbf{r}
+\end{equation}
+\noindent
+Eigenvalues can be found by taking the determinant:
+\begin{equation}
+    |\mathbf{A} - \lambda \mathbf{I}| = 0.
+\end{equation}
+
+\subsection{Trigonometry}
+
+\noindent
+\textbf{Double-Angle Formulae}
+\begin{equation}
+    sin(\theta\pm\phi)=\sin\theta\cos\phi \pm \sin\phi\cos\theta
+\end{equation}
+\begin{equation}
+    \sin(2\theta)=2\sin\theta\cos\theta
+\end{equation}
+\begin{equation}
+    \cos(\theta\pm\phi)=\cos\theta\cos\phi \mp \sin\theta\sin\phi
+\end{equation}
+\begin{equation}
+    \cos(2\theta)=\cos^2\theta-\sin^2\theta
+\end{equation}
+\begin{equation}
+    \tan(\theta\pm\phi)=\frac{\tan\theta \pm \tan\phi}{1\mp\tan\theta\tan\phi}
+\end{equation}
+\begin{equation}
+    \tan 2\theta=\frac{2\tan\theta}{1-\tan^2\theta}
+\end{equation}
+
+\noindent
+\textbf{Hyperbolic Identities}
+\begin{equation}
+    \sinh x =\frac{e^x-e^{-x}}{2}=i\sin x
+\end{equation}
+\begin{equation}
+    \cosh x =\frac{e^x+e^{-x}}{2}=\cos ix
+\end{equation}
+\begin{equation}
+    \tanh x = \frac{\sinh x}{\cosh x} = \frac{e^x-e^{-x}}{e^x+e^{-x}}
+\end{equation}
+\begin{equation}
+    \cosh^2 x - \text{sinh}^2 x = 1
+\end{equation}
+\begin{equation}
+    \tanh^2 x + \text{sech}^2 x = 1
+\end{equation}
+
+\subsection{Series and Expansions}
+
+\noindent
+\textbf{Fourier Series}
+\small
+\begin{equation}
+\begin{split}
+    f(x) &= \frac{a_0}{2}\sum_{m=1}^\infty\bigg[a_m\cos{\bigg(\frac{m\pi x}{L}\bigg)} + b_m\sin{\bigg(\frac{m\pi x}{L}\bigg)}\bigg] \\
+    &= \sum_{n=-\infty}^{\infty}c_n \exp{\bigg(\frac{in\pi x}{L}\bigg)}
+\end{split}
+\end{equation}
+\normalsize
+
+\noindent
+where: 
+\begin{equation}
+    a_0 = \frac{1}{L}\int_{-L}^Lf(x)\ dx
+\end{equation}
+\begin{equation}
+    a_n = \frac{1}{L}\int_{-L}^Lf(x)\cos{\bigg(\frac{n\pi x}{L}\bigg)}\ dx
+\end{equation}
+\begin{equation}
+    b_n = \frac{1}{L}\int_{-L}^Lf(x)\sin{\bigg(\frac{n\pi x}{L}\bigg)}\ dx
+\end{equation}
+\begin{equation}
+    c_n = \frac{1}{2L}\int_{-L}^Lf(x)\exp{\bigg(-\frac{in\pi x}{L}\bigg)}\ dx
+\end{equation} \newline
+\noindent
+\textbf{Taylor Series}
+\begin{equation}
+    f(x) = \sum_{n=0}^\infty \frac{f^n(a)}{n!}(x-a)^n
+\end{equation}
+
+\noindent
+\textbf{Maclaurin Series} \newline
+\noindent
+A Taylor series centred at zero.
+
+\begin{equation}
+    f(x) = \sum_{n=0}^\infty \frac{f^n(0)}{n!}(x)^n
+\end{equation}
+
+\noindent
+\textbf{Binomial Expansion}
+\small
+\begin{equation}
+    (a+b)^n &= a^n + \begin{pmatrix}n\\1\end{pmatrix}a^{n-1}b + ... +  \begin{pmatrix}n\\r\end{pmatrix}a^{n-r}b^r + ... + b^n 
+\end{equation}
+\normalsize
+
+\noindent
+where:
+\begin{equation}
+    \begin{pmatrix}n\\r\end{pmatrix} = ^nC_r = \frac{n!}{r!(n-r)!}
+\end{equation}
+
+\subsection{Transforms}
+
+\noindent
+\textbf{Fourier Transform}
+\begin{equation}
+    \mathcal{F}[f(x)] = \Tilde{f}(k) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f(x)e^{-ikx}\ dx
+\end{equation}
+
+\noindent
+\textbf{Inverse Fourier Transform}
+\begin{equation}
+    \mathcal{F}^{-1}[\Tilde{f}(k)] = f(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty \Tilde{f}(k)e^{ikx}\ dk
+\end{equation}
+
+\noindent
+\textbf{Fourier Transform Properties}
+\begin{itemize}
+    \item{$\mathcal{F}[af(x) + bg(x)] = a\Tilde{f}(k) + b\Tilde{g}(k)$}
+    \item{$\mathcal{F}[f(ax)] = \frac{1}{|a|}\Tilde{f}\big(\frac{k}{a}\big)$}
+    \item{$\mathcal{F}[f'(x)] = ik\Tilde{f}(k)$}
+    \item{$\mathcal{F}[f(x-x_0)] = e^{-ikx_0}\Tilde{f}(k)$}
+    \item{$\int_{-\infty}^\infty |f(x)|^2\ dx = \int_{-\infty}^\infty |\Tilde{f}(k)|^2\ dk$}
+\end{itemize}
+
+\noindent
+\textbf{Laplace Transform}
+\begin{equation}
+    \Tilde{f}(s) = \int_0^\infty f(t)e^{-st}\ dt
+\end{equation}
+
+\noindent
+\textbf{Laplace Transform Properties}
+\begin{itemize}
+    \item{$L[f^{'}(t)] = -f(0) + sL[f(t)]$} 
+    \item{$L[f^{n}(t)] = -f(0) + s^nL[f(t)] - s^{n-1}f(0) - s^{n-2}\dot{f}(0) - ... - \frac{d^nf(0)}{dt^n}$} 
+\end{itemize}
+
+\subsection{Calculus}
+
+\noindent
+\textbf{L'Hôpital's Rule}
+\begin{equation}
+    \lim_{x \to a}\bigg(\frac{f(x)}{g(x)}\bigg) = \lim_{x \to a}\bigg(\frac{f'(x)}{g'(x)}\bigg)
+\end{equation}
+\noindent
+This is useful when $f(a) = g(a) = 0$ but $f'(a) \neq 0$ and $g'(a) \neq 0$. \newline
+
+\noindent
+\textbf{Chain Rule}
+\begin{equation}
+    \frac{df(u(x))}{dx} = \frac{du}{dx}\frac{df}{du}
+\end{equation}
+
+\noindent
+\textbf{Product Rule}
+\begin{equation}
+    \frac{df(u(x)v(x))}{dx} = u\frac{dv}{dx} + v\frac{du}{dx}
+\end{equation}
+
+\noindent
+\textbf{Quotient Rule}
+\begin{equation}
+    \frac{df\big(\frac{u(x)}{v(x)}\big)}{dx} = \frac{v\frac{du}{dx} - u\frac{dv}{dx}}{v^2}
+\end{equation}
+
+\noindent
+\textbf{Partial Differentiation}
+\begin{equation}
+    df(x,y) = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy
+\end{equation}
+
+\noindent
+\textbf{Reciprocal Theorem}
+\begin{equation}
+    \frac{\partial x}{\partial z} = \frac{1}{\frac{\partial z}{\partial x}}
+\end{equation}
+
+\noindent
+\textbf{Reciprocity Theorem}
+\begin{equation}
+    \frac{\partial x}{\partial y}\frac{\partial y}{\partial z}\frac{\partial z}{\partial x} = -1
+\end{equation}
+
+\noindent
+\textbf{Jacobian}
+\footnotesize
+\begin{equation}
+    \iiint_D{f(x,y,z)}\ dxdydz \to \iiint_D{f(u,v,w)}\ |\mathbf{J}|dudvdw
+\end{equation}
+\normalsize
+\begin{equation}
+    \mathbf{J} =
+    \begin{vmatrix}
+    \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\
+    \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\
+    \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w} \\
+    \end{vmatrix}
+\end{equation}
+
+\noindent
+\textbf{Curve Length}
+\begin{equation}
+\begin{split}
+    C &= \int_a^b\sqrt{1 + \bigg(\frac{dy}{dx}\bigg)^2}\ dx \\
+    &= \int_a^b\sqrt{\bigg(\frac{dx}{dt}\bigg)^2 + \bigg(\frac{dy}{dt}\bigg)^2}\ dt 
+\end{split}
+\end{equation}
+
+\noindent
+\textbf{Area Under Curves}
+\begin{equation}
+\begin{split}
+    A &= \int_{x_1}^{x_2} F[x, y(x)]\sqrt{1 + \bigg(\frac{dy}{dx}\bigg)^2}\ dx \\
+    &= \int_{y_1}^{y+2} F[x(y), y]\sqrt{\bigg(\frac{dx}{dy}\bigg)^2 + 1}\ dy \\
+    &= \int_{t=a}^{t=b} f[x(t), y(t)]\sqrt{\bigg(\frac{dx}{dt}\bigg)^2 + \bigg(\frac{dy}{dt}\bigg)^2}\ dt
+\end{split}
+\end{equation}
+
+\noindent
+\textbf{Green's Theorem}
+\begin{equation}
+    \oint_c \big(Pdx + Qdy\big) = \iint \bigg(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\bigg)\ dA
+\end{equation}
+
+\noindent
+\textbf{Area of Surface}
+\begin{equation}
+    A = \iint_S \sqrt{1 + \bigg(\frac{dz}{dx}\bigg)^2 + \bigg(\frac{dz}{dy}\bigg)^2}\ dxdy    
+\end{equation}
+
+\noindent
+\textbf{Dirac Delta Function}
+\begin{equation}
+    f(X) = \int_\infty^\infty f(x)\delta(x-X)dx
+\end{equation}
+
+\noindent
+\textbf{Properties of the Dirac Delta Function}
+\begin{itemize}
+    \item{Symmetry: $\delta(-x) = \delta(x)$}
+    \item{$\delta[a(x-X)] = \frac{1}{|a|}\delta(x-X)$}
+    \item{$\int_\infty^\infty\delta'(x)f(x)dx = -f'(0)$}
+    \item{$\frac{d}{dx}\delta(x) = -\frac{1}{x}\delta(x)$}
+\end{itemize}
+
+\noindent
+\textbf{Trigonometric Functions}
+
+\renewcommand{\arraystretch}{2}
+\begin{center}
+\begin{supertabular}{|P{3cm}|P{3cm}|}
+    \hline
+    \textbf{Function} & \textbf{Derivative} \\ \hline
+    $\sin(x)$ & $\cos(x)$ \\ \hline
+    $\cos(x)$ & $-\sin(x)$ \\ \hline
+    $\tan(x)$ & $\sec^2(x)$ \\ \hline
+    $\csc(x)$ & $-\cot(x)\csc(x)$ \\ \hline
+    $\sec(x)$ & $\sec(x)\tan(x)$ \\ \hline
+    $\cot(x)$ & $-\csc^2(x)$ \\ \hline
+    $\arcsin(x)$ & $\frac{1}{\sqrt{1-x^2}}$ \\ \hline
+    $\arccos(x)$ & $-\frac{1}{\sqrt{1-x^2}}$ \\ \hline
+    $\arctan(x)$ & $\frac{1}{\sqrt{1+x^2}}$ \\ \hline
+    $\arccsc(x)$ & $-\frac{1}{|x|\sqrt{x^2-1}}$ \\ \hline
+    $\arcsec(x)$ & $\frac{1}{|x|\sqrt{x^2-1}}$ \\ \hline
+    $\arccot(x)$ & $-\frac{1}{\sqrt{1+x^2}}$ \\ \hline
+\end{supertabular} \newline
+\end{center}
+
+\noindent
+\textbf{Hyperbolic Functions}
+
+\renewcommand{\arraystretch}{2}
+\begin{center}
+\begin{supertabular}{|P{3cm}|P{3cm}|}
+    \hline
+    \textbf{Function} & \textbf{Derivative} \\ \hline
+    $\sinh(x)$ & $\cosh(x)$ \\ \hline
+    $\cosh(x)$ & $\sinh(x)$ \\ \hline
+    $\tanh(x)$ & $\sech^2(x)$ \\ \hline
+    $\csch(x)$ & $-\coth(x)\csch(x)$ \\ \hline
+    $\sech(x)$ & $-\sech(x)\tanh(x)$ \\ \hline
+    $\coth(x)$ & $-\csch^2(x)$ \\ \hline
+    $\arcsinh(x)$ & $\frac{1}{\sqrt{x^2+1}}$ \\ \hline
+    $\arccosh(x)$ & $\frac{1}{\sqrt{x^2-1}}$ \\ \hline
+    $\arctanh(x)$ & $\frac{1}{\sqrt{1-x^2}}$ \\ \hline
+    $\arccsch(x)$ & $-\frac{1}{|x|\sqrt{1+x^2}}$ \\ \hline
+    $\arcsech(x)$ & $-\frac{1}{x\sqrt{1-x^2}}$ \\ \hline
+    $\arccoth(x)$ & $\frac{1}{\sqrt{1-x^2}}$ \\ \hline
+\end{supertabular}
+\end{center}
+\renewcommand{\arraystretch}{2}
+
+\subsection{Vector Calculus}
+
+\noindent
+\textbf{Directional Gradient}
+\begin{equation}
+    \text{Directional Gradient} = \frac{\nabla\phi \cdot \mathbf{a}}{|\mathbf{a}|}
+\end{equation}
+
+\noindent
+\textbf{Divergence Theorem}
+\begin{equation}
+    \iiint_V{(\nabla \cdot \textbf{A})dV} = \oiint_S{(\textbf{A} \cdot \textbf{n}) dS}
+\end{equation}
+
+\noindent
+\textbf{Stoke's Theorem}
+\begin{equation}
+    \oint_l{\textbf{A} \cdot d\textbf{l}} = \iint_S{(\nabla \times \textbf{A}) \cdot d\textbf{S}}
+\end{equation}
+
+\noindent
+\textbf{Convolution Theorem}
+\begin{equation}
+    \mathcal{F}(f \otimes g) = \sqrt{2\pi}\mathcal{F}(f)\mathcal{F}(g)
+\end{equation}
+
+\subsection{Ordinary Differential Equations}
+
+\noindent
+\textbf{Separate Variables}
+\begin{equation}
+    \frac{dy}{dx} = g(x)h(y)
+\end{equation}
+\begin{equation}
+    \int\frac{dy}{h(y)} = \int g(x)\ dx
+\end{equation}
+
+\noindent
+\textbf{Homogeneous}
+\begin{equation}
+    \frac{dy}{dx} = f\bigg(\frac{y}{x}\bigg) = f(v)
+\end{equation}
+\begin{equation}
+    \frac{dy}{dx} = x\frac{dv}{dx} + v = f(v)
+\end{equation}
+
+\noindent
+\textbf{Exact Equation}
+\begin{equation}
+    P(x, y)dx + Q(x, y)dy = 0,
+\end{equation}
+\noindent
+where:
+\begin{equation}
+    P(x, y) = \frac{\partial F}{\partial x}\bigg|_y\ \ \text{and}\ \ Q(x, y) = \frac{\partial F}{\partial y}\bigg|_x.
+\end{equation}
+\noindent
+Equation is exact if:
+\begin{equation}
+    \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}.
+\end{equation}
+\noindent 
+Solve for $F$ by integrating $P$ and $Q$ and define constants so that the equations match. Rearrange to get $y$ in terms of $x$. \newline
+
+\noindent
+\textbf{Particular Integrals}
+\begin{equation}
+    \frac{dy}{dx} + P(x)y = Q(x)
+\end{equation}
+\begin{equation}
+    I = e^{\int{P(x)dx}} 
+\end{equation}
+\begin{equation}
+    \frac{d}{dx}(Iy) = IQ
+\end{equation}
+\noindent
+Solve for y. \newline
+
+\begin{sidewaystable*}
+\subsection{Coordinate Systems}
+\centering
+\def\arraystretch{1.5}
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|}
+
+\hline%------------------------------------------------------------------------
+\textbf{Operation} & \textbf{Cartesian $(x,y,z)$}	& \textbf{Cylindrical $(\rho,\phi,z)$} &	\textbf{Spherical $(r,\theta,\phi)$}
+\\
+\hline%------------------------------------------------------------------------
+\multirow{\textbf{Definition}} & $\displaystyle x=x$
+ & $\displaystyle x=\rho\cos\phi $ & $\displaystyle x=r\sin\theta\cos\phi $\\
+ &$\displaystyle y=y$ & $\displaystyle y=\rho\sin\phi$  & $x=r\sin\theta\cos\phi $\\
+& $\displaystyle z=z$ & $\displaystyle z=z$ & $\displaystyle z=r\cos\theta$\\ 
+\hline %------------------------------------------------------------------------
+&&&\\[-0.5cm]
+
+\multirow{\textbf{Unit Vectors}} & $\displaystyle \hat{\boldsymbol{\rho}}=\frac{x\hat{\mathbf{x}}+y\hat{\mathbf{y}}}{\sqrt{x^2+y^2}}$
+ &$\hat{\mathbf x} =\cos\phi\hat{\boldsymbol{\rho}} - \sin\phi\boldsymbol{\hat{\phi}}$ & $\hat{\mathbf x} = \sin\theta\cos\phi\boldsymbol{\hat{r}} + \cos\theta\cos\phi\boldsymbol{\hat{\theta}}-\sin\phi\boldsymbol{\hat{\phi}}  $\\
+ 
+ &$\displaystyle \hat{\boldsymbol{\phi}}=\frac{-y\hat{\mathbf{x}}+x\hat{\mathbf{y}}}{\sqrt{x^2+y^2}}$
+  & $\hat{\mathbf y} = \sin\phi\boldsymbol{\hat{\rho}} + \cos\phi\boldsymbol{\hat{\phi}}$  & $\hat{\mathbf y} = \sin\theta\sin\phi\boldsymbol{\hat{r}} + \cos\theta\sin\phi\boldsymbol{\hat{\theta}}+\cos\phi\boldsymbol{\hat{\phi}} $\\
+ 
+ &$\mathbf{\hat{r}}         = \displaystyle\frac{x \hat{\mathbf x} + y \hat{\mathbf y} + z \mathbf{\hat{z}}}{\sqrt{x^2+y^2+z^2}}$ & $\unit{z}=\unit{z}$ & $\displaystyle \boldsymbol{\hat{\theta}} = \frac{x z \hat{\mathbf x} + y z \hat{\mathbf y} - \left(x^2 + y^2\right) \mathbf{\hat{z}}}{\sqrt{x^2+y^2} \sqrt{x^2+y^2+z^2}} $
+\\&&&
+\\[-0.5cm]
+\hline %------------------------------------------------------------------------
+&&&\\[-0.5cm]
+\textbf{Grad ($\nabla f$)}
+ & $\displaystyle{\partial f \over \partial x}\hat{\mathbf x} + {\partial f \over \partial y}\hat{\mathbf y}
+ + {\partial f \over \partial z}\mathbf{\hat{z}}$
+  & $\displaystyle{\partial f \over \partial \rho}\boldsymbol{\hat{\rho}}
+  + {1 \over \rho}{\partial f \over \partial \phi}\boldsymbol{\hat{\phi}}
+  + {\partial f \over \partial z}\mathbf{\hat{z}}$
+   & $\displaystyle{\partial f \over \partial r}\boldsymbol{\hat{r}}
+   + {1 \over r}{\partial f \over \partial \theta}\boldsymbol{\hat{\theta}}
+   + {1 \over r\sin\theta}{\partial f \over \partial \phi}\boldsymbol{\hat{\phi}}$
+   \\[0.3cm]
+\hline%------------------------------------------------------------------------
+&&&\\[-0.5cm]
+\textbf{Div ($\nabla \cdot \boldsymbol{a}$)} & $\displaystyle{\partial A_x \over \partial x} + {\partial A_y \over \partial y} + {\partial A_z \over \partial z}$ &$\displaystyle{1 \over \rho}{\partial \left( \rho A_\rho  \right) \over \partial \rho}
++ {1 \over \rho}{\partial A_\phi \over \partial \phi}
++ {\partial A_z \over \partial z}$& $\displaystyle{1 \over r^2}{\partial \left( r^2 A_r \right) \over \partial r}
++ {1 \over r\sin\theta}{\partial \over \partial \theta} \left(  A_\theta\sin\theta \right)
++ {1 \over r\sin\theta}{\partial A_\phi \over \partial \phi}$\\[0.3cm]
+\hline%------------------------------------------------------------------------
+& & &\\[-0.5cm]
+\textbf{Curl ($\nabla \times \boldsymbol{a}$)} &
+$\displaystyle \left | \begin{array}{c c c}
+\boldsymbol{\hat{x}} & \boldsymbol{\hat{y}} & \boldsymbol{\hat{z}}\\
+\displaystyle\pardif{}{x} & \displaystyle\pardif{}{y} & \displaystyle\pardif{}{z}\\
+a_x & a_y & a_z\\
+\end{array}\right|$ &
+$\displaystyle \frac{1}{\rho}\left | \begin{array}{c c c}
+\boldsymbol{\hat{\rho}} & \rho\boldsymbol{\hat{\phi}} & \boldsymbol{\hat{z}}\\
+\displaystyle\pardif{}{\rho} & \displaystyle\pardif{}{\phi} & \displaystyle\pardif{}{z}\\
+a_\rho & \rho a_\phi & a_z\\
+
+\end{array}\right|$ & 
+$\displaystyle \left | \begin{array}{c c c}
+\displaystyle\frac{\boldsymbol{\hat{r}}}{r^2\sin\theta}
+& \displaystyle\frac{\boldsymbol{\hat{\theta}}}{r\sin\theta} & \displaystyle\frac{\boldsymbol{\hat{\phi}}}{r}\\
+\displaystyle\pardif{}{r} & \displaystyle\pardif{}{\theta} & \displaystyle\pardif{}{\phi}\\
+a_r & r a_\theta & r\sin\theta a_\phi\\
+
+\end{array}\right|$\\&&&
+\\[-0.5cm]
+\hline%------------------------------------------------------------------------
+\textbf{Area Element (d$\boldsymbol{A}$)} & d$x$d$y\boldsymbol{\hat{z}}$ & $\rho$d$\rho$d$\phi\boldsymbol{\hat{z}}$ & $r^2\sin\theta$d$\theta$d$\phi\boldsymbol{\hat{r}}$\\
+\hline%------------------------------------------------------------------------
+\textbf{Volume Element (d$V$)} & d$x$d$y$d$z$ & $\rho$d$\rho$d$\phi$d$z$ & $r^2\sin\theta$d$\theta$d$\phi$d$r$\\
+\hline%------------------------------------------------------------------------
+\end{tabular}}
+\end{sidewaystable*}
+
+\end{document}
